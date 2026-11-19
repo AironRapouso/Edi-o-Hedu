@@ -1,7 +1,7 @@
 // REELS 3 — 3D layer (three.js r181, vendored in assets/three).
 // Everything here is a pure function of the GSAP timeline time: HyperFrames seeks the timeline and
 // dispatches "hf-seek"; we render exactly that frame. No requestAnimationFrame, no wall clock, no random.
-// One small world for the whole story: the gold pawn is VOCÊ, the robot is the FERRAMENTA, the sheet is the PLANILHA.
+// One small world for the whole story: the gold pawn is VOCÊ, the astronaut (Dr. Hélio) is the FERRAMENTA, the sheet is the PLANILHA.
 import * as THREE from "three";
 import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
@@ -35,6 +35,7 @@ async function build() {
   const IR = { immediateRender: false };
 
   await Promise.all(['400 120px "Bebas Neue"', '700 60px "Inter"', '700 60px "Playfair Display"', '700 40px "Mono"'].map((f) => document.fonts.load(f)));
+  const { makeAstronaut } = await import("./assets/astronauta.js");
   const font = new FontLoader().parse(await (await fetch("assets/three/fonts/helvetiker_bold.typeface.json")).json());
 
   // ------------------------------------------------------------------ renderer, light, materials
@@ -141,52 +142,16 @@ async function build() {
     });
     return g;
   }
-  function robotHead() {
-    const h = new THREE.Group();
-    h.add(rbox(2.3, 1.5, 1.4, 0.36, M.white));
-    const visor = rbox(1.8, 0.8, 0.12, 0.2, M.ink);
-    visor.position.set(0, 0, 0.68);
-    h.add(visor);
-    const eyeM = new THREE.MeshBasicMaterial({ color: 0x8fd8ff, toneMapped: false });
-    [-0.42, 0.42].forEach((x) => { const e = new THREE.Mesh(new THREE.CircleGeometry(0.17, 32), eyeM); e.position.set(x, 0.02, 0.745); h.add(e); });
-    [-1.2, 1.2].forEach((x) => { const ear = cyl(0.24, 0.24, 0.14, M.sky); ear.rotation.z = Math.PI / 2; ear.position.x = x; h.add(ear); });
-    const ant = cyl(0.045, 0.045, 0.42, M.navy, 12);
-    ant.position.y = 0.95;
-    const tip = sph(0.14, M.gold);
-    tip.position.y = 1.22;
-    h.add(ant, tip);
-    h.userData.eyeM = eyeM;
-    return h;
-  }
-  function robot() {                                      // the FERRAMENTA
+  // the FERRAMENTA: astronaut with Dr. Hélio's face (assets/astronauta.js, shared with the long video).
+  // Same interface as the old robot: userData = { head, arms, eyeM } (eyeM = the lamp on top of the helmet).
+  // At 0.8 of its size the helmet is as tall as the old robot's head, so the price tag and the parcels laid out around
+  // the robot stay clear of the glass.
+  function robot() {
+    const a = makeAstronaut({ THREE, rbox, cyl, sph, sh, mat, basic, M });
+    a.scale.setScalar(0.8);
     const g = new THREE.Group();
-    const rh = robotHead();
-    rh.position.y = 3.0;
-    const neck = cyl(0.24, 0.24, 0.26, M.navy);
-    neck.position.y = 2.15;
-    const body = rbox(2.0, 1.65, 1.3, 0.32, M.blue);
-    body.position.y = 1.25;
-    const chest = rbox(1.15, 0.62, 0.08, 0.12, M.white);
-    chest.position.set(0, 1.4, 0.66);
-    const lamp = new THREE.Mesh(new THREE.CircleGeometry(0.1, 24), basic(0xf4b04a));
-    lamp.position.set(0.32, 1.42, 0.705);
-    const bar = rbox(0.5, 0.09, 0.03, 0.03, M.sky);
-    bar.position.set(-0.2, 1.48, 0.705);
-    const bar2 = rbox(0.34, 0.09, 0.03, 0.03, M.sky);
-    bar2.position.set(-0.28, 1.31, 0.705);
-    g.add(rh, neck, body, chest, lamp, bar, bar2);
-    [-0.5, 0.5].forEach((x) => { const leg = cyl(0.3, 0.34, 0.5, M.navy); leg.position.set(x, 0.25, 0); g.add(leg); });
-    const arms = [-1, 1].map((sg) => {
-      const pivot = new THREE.Group();
-      pivot.position.set(sg * 1.24, 1.85, 0.05);
-      const arm = sh(new THREE.Mesh(new THREE.CapsuleGeometry(0.19, 0.75, 8, 20), M.sky));
-      arm.position.y = -0.55;
-      pivot.add(arm);
-      pivot.rotation.z = sg * 0.22;
-      g.add(pivot);
-      return pivot;
-    });
-    g.userData = { head: rh, arms, eyeM: rh.userData.eyeM };
+    g.add(a);
+    g.userData = a.userData;
     return g;
   }
   function pawn(material) {                               // VOCÊ: a faceless gold game piece
@@ -689,7 +654,7 @@ async function build() {
     g.add(bot);
     const { head, arms, eyeM } = bot.userData;
     tl.fromTo(bot.position, { y: -6.5 }, { y: 0, duration: 0.5, ease: "back.out(0.55)" }, C3 - 0.14);      // already coming up at the cut: never an empty panel
-    const dim = new THREE.Color(0x24345f), lit = new THREE.Color(0x8fd8ff);
+    const dim = new THREE.Color(0x24345f), lit = eyeM.color.clone();        // its own light switches on
     tl.fromTo(eyeM.color, { r: dim.r, g: dim.g, b: dim.b }, { r: lit.r, g: lit.g, b: lit.b, duration: 0.16, ease: "power2.out" }, C3 + 0.36);
     const tag = plate(1.5, 0.66, 0.12, M.plate, "R$ ?", "#F4B04A", 0.74);                      // its price, still a question
     tag.position.set(RX + 1.6, 2.55, 0.55);

@@ -3,6 +3,6 @@ scipy
 soundfile
 Pillow
 faster-whisper
-rembg[cpu]
+rembg[cpu,cli]
 edge-tts
 defusedxml

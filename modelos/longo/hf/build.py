@@ -16,6 +16,22 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 EDIT = HERE.parent
+
+
+def _sync_character():
+    """The 3D character (assets/astronauta.js) lives in the repository's assets/: refresh the composition's copy."""
+    dst = HERE / "assets" / "astronauta.js"
+    for up in HERE.resolve().parents:
+        src = up / "assets" / "astronauta.js"
+        if src.is_file() and src.resolve() != dst.resolve():
+            dst.parent.mkdir(exist_ok=True)
+            dst.write_bytes(src.read_bytes())
+            return
+    assert dst.is_file(), "assets/astronauta.js not found: copy it from the repository's assets/"
+
+
+_sync_character()
+
 FPS = 30
 W, H = 1920, 1080
 PANEL_X = 1020                      # side panel: x 1020..1920
@@ -89,7 +105,7 @@ def setp(sel, props, t):
 
 
 # ---------------------------------------------------------------- scene helpers (3D, declarative)
-SFX_FOR = {"pawn": ("pop", -19), "pawnX": ("thud", -18), "robot": ("servo", -21), "plate": ("pop_hi", -21), "text": ("thud", -15),
+SFX_FOR = {"pawn": ("pop", -19), "pawnX": ("thud", -18), "robot": ("servo", -21), "astronaut": ("servo", -21), "plate": ("pop_hi", -21), "text": ("thud", -15),
            "numeral": ("thud", -14), "coins": ("coins", -19), "calendar": ("paper", -21), "parcel": ("box", -18), "badge": ("buzz", -18),
            "nosign": ("clang", -15), "doc": ("paper", -20), "bubble": ("bloop", -19), "iceberg": ("rumble", -18), "belt": ("servo", -24),
            "armbot": ("servo", -21), "counter": ("thud", -19), "atm": ("thud", -18), "door": ("thud", -19), "clock": ("pop", -19),
@@ -186,6 +202,10 @@ def emph(t0, t1, z=1.2):
     ZOOMS.append((t0, t1, z))
 
 
+# episode data the cue sheet may set (defaults: nothing). cues.py fills them for its own episode:
+#   FIXI = {source word index: caption text}   one-off caption fixes (FIX below is by word text, for every occurrence)
+#   LOWER_THIRDS = [(t0, t1, role)]            name tags; the captions move right while one is on screen
+FIXI, LOWER_THIRDS = {}, []
 exec(open(HERE / "cues.py", encoding="utf8").read())
 for _a, _k in CHIP_Q:
     _chip(*_a, **_k)
@@ -198,9 +218,6 @@ KEY = {"educação", "profissional", "escolas", "técnicas", "diretrizes", "comp
        "combinar", "ilusão", "centro", "dignidade", "recomeço", "possibilidade", "desenvolvimento", "humano", "emprego", "renda", "produtividade"}
 FIX = {"1926,": "2026,", "arquivos": "artigos", "nascer": "nasceu", "desverecer": "desmerecer", "apostas.": "opostas.", "mediada": "medida", "Sinaepte.": "SINAEPT.",
        "-vindos": "VINDOS", "-me": "ME", "-se": "SE", "Helio": "HÉLIO", "%": "%"}
-
-
-FIXI = {K("sobre", 1500): "sob", K("sabe", 1700): "sabem"}
 
 
 def mode_at(t):
@@ -227,7 +244,7 @@ for k, w in enumerate(WO):
         cur = []
 if cur:
     chunks.append(cur)
-LTS = [(T(92, -0.1), TE(100, 0.3)), (T(2209, -0.1), TE(2219, 0.4))]      # lower thirds: captions move right meanwhile
+LTS = [(a, b) for a, b, _ in LOWER_THIRDS]      # lower thirds (cues.py): captions move right meanwhile
 
 
 def cap_left(t):

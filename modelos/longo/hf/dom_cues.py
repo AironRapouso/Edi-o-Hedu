@@ -11,8 +11,8 @@ def lower_third(cid, s, e, role):
     sfx(s, "whoosh_s", -20, -0.6, "lower third")
 
 
-lower_third("lt1", T(92, -0.1), TE(100, 0.3), "Professor · Educador · Especialista em Educação")
-lower_third("lt2", T(2209, -0.1), TE(2219, 0.4), "A Nova Ordem Educacional")
+for _k, (_s, _e, _role) in enumerate(LOWER_THIRDS):          # times and roles: LOWER_THIRDS in cues.py
+    lower_third(f"lt{_k + 1}", _s, _e, _role)
 
 # ---------------------------------------------------------------- vinheta (the channel intro, with its own audio)
 vs, ve = gap("VINHETA")

@@ -87,9 +87,27 @@ Reescreva `hf/cues.py` para a fala do episódio. As funções principais:
 - `side(...)`: rosto à esquerda e painel com cena 3D à direita.
 - `chip(...)`: palavras grandes ao lado do rosto.
 - `emph(...)`: aproximação de câmera em uma frase.
-- `it("plate" | "pawn" | "robot" | "doc" | "bar" | "badge" | ..., ...)`: objetos da cena.
+- `it("plate" | "pawn" | "astronaut" | "doc" | "bar" | "badge" | ..., ...)`: objetos da cena.
 
 O exemplo do EP8 (`modelos/longo/exemplos/`) ancora tudo em frases (`S("frase")`), o que evita erro de índice quando o corte muda. Textos fixos (tarja, rodapé de fonte, cartão de comentário, tela final) ficam em `hf/dom_cues.py`.
+
+Dados do episódio que também ficam em `hf/cues.py` (o `build.py` não tem nada fixo de um episódio):
+
+- `LOWER_THIRDS = [(início, fim, "função")]`: as tarjas com o nome; a legenda vai para a direita enquanto uma está na tela.
+- `FIXI = {índice_da_palavra: "texto"}`: correção pontual da legenda numa palavra só (`FIX`, no `build.py`, troca a palavra em todas as ocorrências).
+
+#### Personagens (elenco das cenas 3D)
+
+| Personagem | Papel | Chave em `it(...)` |
+| :- | :- | :- |
+| Peão dourado | o espectador, VOCÊ (o estudante no centro) | `"pawn"` (`mat="gold"`) |
+| Peões cinza | pessoas e instituições | `"pawn"` (`mat="grey"`) |
+| Astronauta Dr. Hélio (rosto do apresentador, traje #031954, detalhes #010B25 e #F4B04A) | tecnologia / IA, no lugar do antigo robô | `"astronaut"` |
+
+- O astronauta fica em `assets/astronauta.js`, um arquivo só para o vídeo longo, os shorts e os Reels. O `build.py` copia a versão do repositório para `hf/assets/` a cada montagem, e o `build_vert.py` leva a cópia para os shorts.
+- Medidas em tamanho 1 (multiplique por `s`): 4,54 de altura, capacete de raio 1,24 com centro em y = 3,3, fones até x = ±1,38, frente do vidro em z = +1,2. O capacete é de vidro: placa que entra nessa esfera aparece por dentro do vidro, então deixe as placas a pelo menos 0,1 dela.
+- `eyesOn=t` acende a luz no topo do capacete; `wave=[t, ...]` levanta o braço direito.
+- A chave antiga `"robot"` continua valendo e mostra o mesmo astronauta a 0,8 do tamanho (a altura da cabeça do robô), para que as cenas escritas para o robô (EP7, EP8) não encostem nas placas. Em cena nova, use `"astronaut"`.
 
 ```bash
 cd hf

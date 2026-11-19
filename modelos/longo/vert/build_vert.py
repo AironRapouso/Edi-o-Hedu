@@ -20,6 +20,10 @@ from pathlib import Path
 HERE = Path(__file__).parent
 EDIT = HERE.parent
 HF = EDIT / "hf"
+# the end-card sting: the channel's sting from the repository (assets/sfx_padrao_antigo/sting.wav)
+STING = next((p / "assets" / "sfx_padrao_antigo" / "sting.wav" for p in HERE.resolve().parents
+              if (p / "assets" / "sfx_padrao_antigo" / "sting.wav").is_file()), None)
+assert STING, "sting.wav not found: expected assets/sfx_padrao_antigo/sting.wav in the repository"
 FINAL = EDIT.parent / "EP7_final.mp4"
 W, H = 1080, 1920
 END = 2.6
@@ -270,7 +274,8 @@ def build(cid):
         if not (out / "assets" / sub).exists():
             shutil.copytree(HF / "assets" / sub, out / "assets" / sub)
     shutil.copy(HF / "assets" / "gsap.min.js", out / "assets" / "gsap.min.js")
-    shutil.copy(EDIT.parent.parent / "EP5" / "edit" / "hf_vert" / "c1" / "assets" / "sting.wav", out / "assets" / "sting.wav")
+    shutil.copy(HF / "assets" / "astronauta.js", out / "assets" / "astronauta.js")   # the 3D character (hf/build.py keeps it in sync)
+    shutil.copy(STING, out / "assets" / "sting.wav")
     s3 = (HF / "scene3d.js").read_text(encoding="utf8")
     for a_, b_ in [("const W = 1920, H = 1080, PANEL_X = EP.panelX;", "const W = EP.W, H = EP.H, PANEL_X = 0;"),
                    ("const aspect = full ? W / H : (W - PANEL_X) / H;", "const aspect = W / H;"),

@@ -56,5 +56,8 @@ third = len(a) // 3
 for k, name in enumerate(("first third", "middle third", "last third")):
     x = a[k * third: (k + 1) * third]
     print(f"RMS {name}: {20 * np.log10(np.sqrt((x ** 2).mean())):.1f} dBFS")
-run(["ffmpeg", "-v", "error", "-y", "-i", str(final), "-vf", "fps=3,scale=270:480,tile=8x3", "-q:v", "3", str(out / "s_%02d.jpg")])
+# contact sheets in the video's own shape: 16:9 thumbnails (6 x 4) for the long video, 9:16 (8 x 3) for a vertical one
+vw, vh = (int(re.search(rf"{k}=(\d+)", p).group(1)) for k in ("width", "height"))
+thumb = "480:270,tile=6x4" if vw >= vh else "270:480,tile=8x3"
+run(["ffmpeg", "-v", "error", "-y", "-i", str(final), "-vf", f"fps=3,scale={thumb}", "-q:v", "3", str(out / "s_%02d.jpg")])
 print("sheets:", ", ".join(sorted(f.name for f in out.glob("s_*.jpg"))))

@@ -22,7 +22,7 @@ cp "$REPO"/modelos/longo/vert/* "$DST/edit/vert/"
 
 # recursos da composição
 cp -r "$REPO/assets/fonts" "$REPO/assets/three" "$DST/edit/hf/assets/"
-cp "$REPO/assets/gsap.min.js" "$REPO/assets/vinheta.mp4" "$DST/edit/hf/assets/"
+cp "$REPO/assets/gsap.min.js" "$REPO/assets/vinheta.mp4" "$REPO/assets/astronauta.js" "$DST/edit/hf/assets/"
 
 # fonte monoespaçada das legendas (o modelo usa "consolab.ttf"; a Consolas é da Microsoft e não vem no repositório)
 MONO="${MONO_FONT:-}"

@@ -6,6 +6,12 @@ UPDATE_NOTE = ("Atualização: o Parecer CNE/CP nº 21/2026 foi homologado pelo 
                "Resolução CNE/CP nº 2, de 11/11/2026 · Fonte: gov.br/mec/cne")
 
 
+# episode data read by build.py / dom_cues.py
+FIXI = {K("sobre", 1500): "sob", K("sabe", 1700): "sabem"}          # one-off caption fixes (source word index -> text)
+LOWER_THIRDS = [(T(92, -0.1), TE(100, 0.3), "Professor · Educador · Especialista em Educação"),
+                (T(2209, -0.1), TE(2219, 0.4), "A Nova Ordem Educacional")]
+
+
 def A(prefix, after, dt=0.0):
     return T(K(prefix, max(0, after - 8)), dt)
 

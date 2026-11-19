@@ -23,6 +23,22 @@ from scipy.ndimage import gaussian_filter1d
 
 HERE = Path(__file__).parent
 EDIT = HERE.parent
+
+
+def _sync_character():
+    """The 3D character (assets/astronauta.js) lives in the repository's assets/: refresh the composition's copy."""
+    dst = HERE / "assets" / "astronauta.js"
+    for up in HERE.resolve().parents:
+        src = up / "assets" / "astronauta.js"
+        if src.is_file() and src.resolve() != dst.resolve():
+            dst.parent.mkdir(exist_ok=True)
+            dst.write_bytes(src.read_bytes())
+            return
+    assert dst.is_file(), "assets/astronauta.js not found: copy it from the repository's assets/"
+
+
+_sync_character()
+
 FPS = 30
 W, H, SEAM = 1080, 1920, 712
 PH = H - SEAM                                   # height of the face panel

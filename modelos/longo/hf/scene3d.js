@@ -1,4 +1,4 @@
-// EP6 — 3D layer (three.js r181, vendored). Same visual language as the Reels (paper, gold pawn = VOCÊ, robot = IA,
+// EP6 — 3D layer (three.js r181, vendored). Same visual language as the Reels (paper, gold pawn = VOCÊ, astronaut = IA,
 // navy plates with Bebas text), driven by a declarative scene list written by build.py (window.EP.scenes).
 // Pure function of the timeline time: HyperFrames seeks the GSAP timeline and dispatches "hf-seek"; we render that frame.
 import * as THREE from "three";
@@ -26,6 +26,7 @@ async function build() {
   const W = 1920, H = 1080, PANEL_X = EP.panelX;               // side scenes render right of PANEL_X
   const IR = { immediateRender: false };
   await Promise.all(['400 120px "Bebas Neue"', '700 60px "Inter"', '700 60px "Playfair Display"', '700 40px "Mono"'].map((f) => document.fonts.load(f)));
+  const { makeAstronaut } = await import("./assets/astronauta.js");
   const font = new FontLoader().parse(await (await fetch("assets/three/fonts/helvetiker_bold.typeface.json")).json());
 
   // ------------------------------------------------------------------ renderer, light, materials
@@ -153,52 +154,19 @@ async function build() {
     });
     return g;
   }
-  function robotHead() {
-    const h = new THREE.Group();
-    h.add(rbox(2.3, 1.5, 1.4, 0.36, M.white));
-    const visor = rbox(1.8, 0.8, 0.12, 0.2, M.ink);
-    visor.position.set(0, 0, 0.68);
-    h.add(visor);
-    const eyeM = basic(0x8fd8ff);
-    [-0.42, 0.42].forEach((x) => { const e = new THREE.Mesh(new THREE.CircleGeometry(0.17, 32), eyeM); e.position.set(x, 0.02, 0.745); h.add(e); });
-    [-1.2, 1.2].forEach((x) => { const ear = cyl(0.24, 0.24, 0.14, M.sky); ear.rotation.z = Math.PI / 2; ear.position.x = x; h.add(ear); });
-    const ant = cyl(0.045, 0.045, 0.42, M.navy, 12);
-    ant.position.y = 0.95;
-    const tip = sph(0.14, M.gold);
-    tip.position.y = 1.22;
-    h.add(ant, tip);
-    h.userData.eyeM = eyeM;
-    return h;
-  }
-  function robot() {
+  // the character for technology / AI: astronaut with Dr. Hélio's face (assets/astronauta.js, shared with the Reels).
+  // Same interface as the old robot: userData = { head, arms, eyeM } (eyeM = the lamp on top of the helmet).
+  // "robot" (the key of the older cue sheets) gets the astronaut at ROBOT_FIT of its size: the cue sheets written for the
+  // robot put plates right next to its head, and at full size those plates went into the glass helmet (EP7 "tech"/"ia",
+  // EP8 "prat"/"combinar"). At 0.8 the helmet is as tall as the robot's head and every one of those scenes stays clear.
+  const ROBOT_FIT = 0.8;
+  function astronaut(k = 1) {
+    const a = makeAstronaut({ THREE, rbox, cyl, sph, sh, mat, basic, M });
+    if (k === 1) return a;
     const g = new THREE.Group();
-    const rh = robotHead();
-    rh.position.y = 3.0;
-    const neck = cyl(0.24, 0.24, 0.26, M.navy);
-    neck.position.y = 2.15;
-    const body = rbox(2.0, 1.65, 1.3, 0.32, M.blue);
-    body.position.y = 1.25;
-    const chest = rbox(1.15, 0.62, 0.08, 0.12, M.white);
-    chest.position.set(0, 1.4, 0.66);
-    const lamp = new THREE.Mesh(new THREE.CircleGeometry(0.1, 24), basic(0xf4b04a));
-    lamp.position.set(0.32, 1.42, 0.705);
-    const b1 = rbox(0.5, 0.09, 0.03, 0.03, M.sky);
-    b1.position.set(-0.2, 1.48, 0.705);
-    const b2 = rbox(0.34, 0.09, 0.03, 0.03, M.sky);
-    b2.position.set(-0.28, 1.31, 0.705);
-    g.add(rh, neck, body, chest, lamp, b1, b2);
-    [-0.5, 0.5].forEach((x) => { const leg = cyl(0.3, 0.34, 0.5, M.navy); leg.position.set(x, 0.25, 0); g.add(leg); });
-    const arms = [-1, 1].map((sg) => {
-      const pivot = new THREE.Group();
-      pivot.position.set(sg * 1.24, 1.85, 0.05);
-      const arm = sh(new THREE.Mesh(new THREE.CapsuleGeometry(0.19, 0.75, 8, 20), M.sky));
-      arm.position.y = -0.55;
-      pivot.add(arm);
-      pivot.rotation.z = sg * 0.22;
-      g.add(pivot);
-      return pivot;
-    });
-    g.userData = { head: rh, arms, eyeM: rh.userData.eyeM };
+    a.scale.setScalar(k);
+    g.add(a);
+    g.userData = a.userData;
     return g;
   }
   function pawn(material) {
@@ -507,7 +475,8 @@ async function build() {
   const FACT = {
     pawn: (o) => pawn(o.own ? MATS[o.mat || "gold"]() : M[o.mat || "gold"]),
     pawnX: (o) => pawnCrossed(M[o.mat || "grey"]),
-    robot: () => robot(),
+    robot: () => astronaut(ROBOT_FIT),                            // old key: same character, at the old robot's size
+    astronaut: () => astronaut(),
     plate: (o) => plate(o),
     text: (o) => text3d(o.txt, o.size ?? 1.2, (o.size ?? 1.2) * 0.28, o.own ? MATS[o.mat || "gold"]() : M[o.mat || "gold"]),
     coins: (o) => coinStack(o.n ?? 6, o.rad ?? 0.5),
@@ -582,7 +551,8 @@ async function build() {
     if (o.doorOpen && u.leaf) for (const d of o.doorOpen) tl.to(u.leaf.rotation, { y: d[2], duration: d[1], ease: "power2.inOut" }, d[0]);
     if (o.knocks && u.leaf) for (const t of o.knocks) tl.fromTo(u.leaf.position, { z: -0.2 }, { z: -0.12, duration: 0.05, yoyo: true, repeat: 1, ease: "power2.out", ...IR }, t);
     if (o.armWork && u.j1) tl.fromTo(u.j1.rotation, { y: -0.6 }, { y: 0.6, duration: 0.55, yoyo: true, repeat: Math.max(1, Math.round((o.armWork[1] - o.armWork[0]) / 0.55)), ease: "sine.inOut", ...IR }, o.armWork[0]);
-    if (o.eyesOn && u.eyeM) { const dim = new THREE.Color(0x24345f), lit = new THREE.Color(0x8fd8ff); tl.fromTo(u.eyeM.color, { r: dim.r, g: dim.g, b: dim.b }, { r: lit.r, g: lit.g, b: lit.b, duration: 0.16, ease: "power2.out" }, o.eyesOn); }
+    // eyesOn: the character switches its own light on (dim navy -> the colour it was built with)
+    if (o.eyesOn && u.eyeM) { const dim = new THREE.Color(0x24345f), lit = u.eyeM.color.clone(); tl.fromTo(u.eyeM.color, { r: dim.r, g: dim.g, b: dim.b }, { r: lit.r, g: lit.g, b: lit.b, duration: 0.16, ease: "power2.out" }, o.eyesOn); }
     if (o.wave && u.arms) for (const t of o.wave) tl.fromTo(u.arms[1].rotation, { x: 0 }, { x: -1.3, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", ...IR }, t);
     return { obj, o, u };
   }
