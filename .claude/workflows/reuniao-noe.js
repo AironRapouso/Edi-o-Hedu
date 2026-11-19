@@ -43,14 +43,18 @@ const PREP = { type: 'object', properties: {
   da_internet: { type: 'array', items: { type: 'object', properties: { achado: { type: 'string' }, fonte: { type: 'string', description: 'URL aberta' }, data: { type: 'string' } }, required: ['achado','fonte','data'] } },
   propostas: { type: 'array', items: { type: 'object', properties: { id: { type: 'string' }, proposta: { type: 'string' }, dono: { type: 'string', enum: ['analista','roteirista','editor','postador','diretor'] }, motivo: { type: 'string' }, evidencia: { type: 'string' }, como_medir: { type: 'string' } }, required: ['id','proposta','dono','motivo','evidencia','como_medir'] } },
   perguntas: { type: 'array', items: { type: 'object', properties: { para: { type: 'string', enum: ['analista','roteirista','editor','postador'] }, pergunta: { type: 'string' } }, required: ['para','pergunta'] } },
-  fala: { type: 'string', description: 'uma frase curta, em primeira pessoa, com o ponto mais importante, para aparecer no balão do escritório (até 140 caracteres)' } },
-  required: ['funcionou','nao_funcionou','da_internet','propostas','perguntas','fala'] }
+  fala: { type: 'string', description: 'uma frase curta, em primeira pessoa, com o ponto mais importante, para aparecer no balão do escritório e para visitantes (até 140 caracteres, linguagem simples, com um número ou exemplo concreto, sem nomes de alunos nem dados internos sensíveis)' },
+  fala_tema: { type: 'string', enum: ['funcionou','nao_funcionou','melhorar'], description: 'do que trata a fala' },
+  fala_fonte: { type: 'object', properties: { nome: { type: 'string', description: 'nome curto do site ou estudo' }, url: { type: 'string', description: 'URL aberta, http ou https; vazio se a fala não veio da internet' } }, required: ['nome','url'] } },
+  required: ['funcionou','nao_funcionou','da_internet','propostas','perguntas','fala','fala_tema','fala_fonte'] }
 const DEBATE = { type: 'object', properties: {
   respostas: { type: 'array', items: { type: 'object', properties: { de: { type: 'string' }, pergunta: { type: 'string' }, resposta: { type: 'string' } }, required: ['de','pergunta','resposta'] } },
   posicoes: { type: 'array', items: { type: 'object', properties: { proposta_id: { type: 'string' }, posicao: { type: 'string', enum: ['apoio','objecao','ajuste'] }, motivo: { type: 'string' } }, required: ['proposta_id','posicao','motivo'] } },
   propostas_finais: { type: 'array', items: { type: 'object', properties: { id: { type: 'string' }, proposta: { type: 'string' }, dono: { type: 'string' }, motivo: { type: 'string' }, como_medir: { type: 'string' } }, required: ['id','proposta','dono','motivo','como_medir'] } },
-  fala: { type: 'string', description: 'uma frase curta reagindo a um colega, citando-o pelo nome (até 140 caracteres)' } },
-  required: ['respostas','posicoes','propostas_finais','fala'] }
+  fala: { type: 'string', description: 'uma frase curta reagindo a um colega, citando-o pelo nome (até 140 caracteres, linguagem simples, sem dados internos sensíveis)' },
+  fala_tema: { type: 'string', enum: ['funcionou','nao_funcionou','melhorar'], description: 'do que trata a fala' },
+  fala_fonte: { type: 'object', properties: { nome: { type: 'string', description: 'nome curto do site ou estudo' }, url: { type: 'string', description: 'URL aberta, http ou https; vazio se a fala não veio da internet' } }, required: ['nome','url'] } },
+  required: ['respostas','posicoes','propostas_finais','fala','fala_tema','fala_fonte'] }
 const VEREDITOS = { type: 'object', properties: { vereditos: { type: 'array', items: { type: 'object', properties: { id: { type: 'string' }, aprovada: { type: 'boolean' }, motivo: { type: 'string' }, ajuste: { type: 'string' } }, required: ['id','aprovada','motivo','ajuste'] } } }, required: ['vereditos'] }
 const ATA = { type: 'object', properties: {
   titulo: { type: 'string' }, resumo: { type: 'array', items: { type: 'string' }, description: '4 a 6 frases curtas e simples para o painel' },
@@ -121,6 +125,8 @@ AJUSTES DA CHECAGEM: ${JSON.stringify(ajustes, null, 1)}
 BARRADAS: ${JSON.stringify(barradas, null, 1)}`, { ...OPC, label: 'ata', phase: 'Ata', schema: ATA })
 
 const falas = []
-Object.entries(P).forEach(([id, p]) => falas.push({ agente: id, texto: p.fala }))
-Object.entries(D).forEach(([id, d]) => falas.push({ agente: id, texto: d.fala }))
+const fonteOk = f => f && /^https?:\/\//i.test(f.url || '') ? { nome: String(f.nome || '').slice(0, 60), url: f.url } : null
+const poe = (id, x) => { if (!x || !x.fala) return; const v = { agente: id, texto: String(x.fala).slice(0, 140), tema: x.fala_tema || 'melhorar' }; const fo = fonteOk(x.fala_fonte); if (fo) v.fonte = fo; falas.push(v) }
+Object.entries(P).forEach(([id, p]) => poe(id, p))
+Object.entries(D).forEach(([id, d]) => poe(id, d))
 return { data: DATA, tipo: TIPO, participantes: ['diretor', ...Object.keys(P)], falas, ata, aprovadas: aprovadas.length, barradas: barradas.length, sem_dados: dossie.sem_dados }
