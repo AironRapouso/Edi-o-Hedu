@@ -1,0 +1,19 @@
+# pastas de trabalho (gravações, renders, caches): ficam só no computador de edição
+episodios/
+spotify/EP_*/
+spotify/PRONTOS_PARA_POSTAR/
+spotify/_pipeline/*.log
+spotify/_pipeline/publicar.json
+spotify/_pipeline/_*.json
+spotify/_pipeline/_up.js
+.hyperframes/
+renders/
+__pycache__/
+*.pyc
+.venv/
+*.mp4
+!assets/vinheta.mp4
+*.mov
+*.wav
+!assets/sfx_padrao_antigo/*.wav
+!spotify/_pipeline/vinheta.wav

@@ -1,0 +1,8 @@
+numpy
+scipy
+soundfile
+Pillow
+faster-whisper
+rembg[cpu]
+edge-tts
+defusedxml

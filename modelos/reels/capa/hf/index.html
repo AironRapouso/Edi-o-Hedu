@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8" />
+<meta name="viewport" content="width=1080, height=1920" />
+<title>REELS 3 — capa</title>
+<style>
+@font-face { font-family: "Inter"; src: url("assets/fonts/Inter-700-latin.woff2") format("woff2"); font-weight: 700; font-display: block; }
+@font-face { font-family: "Bebas Neue"; src: url("assets/fonts/bebas-neue-latin-400-normal.woff2") format("woff2"); font-weight: 400; font-display: block; }
+@font-face { font-family: "Mono"; src: url("assets/fonts/consolab.ttf") format("truetype"); font-weight: 700; font-display: block; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #F4F2EC; }
+#root { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: #F4F2EC; color: #010B25;
+  background-image: radial-gradient(rgba(1,11,37,.085) 1.6px, transparent 1.7px); background-size: 36px 36px; }
+.abs { position: absolute; }
+.bebas { font-family: "Bebas Neue", sans-serif; font-weight: 400; line-height: 1; letter-spacing: .015em; }
+.mono { font-family: "Mono", monospace; font-weight: 700; }
+#wm { left: 0; right: 0; top: 132px; display: flex; align-items: center; justify-content: center; gap: 16px; font-size: 27px; letter-spacing: .26em; color: rgba(1,11,37,.66); }
+.l { left: 0; right: 0; text-align: center; white-space: nowrap; }
+#l3 { left: 0; right: 0; top: 722px; text-align: center; z-index: 5; }
+#l3 span { display: inline-block; font-size: 134px; background: #F4B04A; padding: 18px 42px 2px; border-radius: 28px; transform: rotate(-2deg); box-shadow: 0 16px 36px rgba(1,11,37,.25); white-space: nowrap; }
+#l3 i { font-style: normal; color: #FFFFFF; padding: 0 .06em; }
+#panel { left: 0; right: 0; top: 1150px; bottom: 0; border-radius: 80px 80px 0 0; background: linear-gradient(180deg, #0A63F2 0%, #0457E7 30%, #031954 100%); }
+#clip { left: 0; right: 0; top: 0; bottom: 0; overflow: hidden; z-index: 3; }
+#host { position: absolute; left: -149px; top: 356px; width: 1233px; filter: drop-shadow(0 10px 28px rgba(1,11,37,.35)); }
+.chip { left: 884px; top: 958px; width: 140px; height: 140px; border-radius: 34px; background: #010B25; color: #F6F6F8; font-size: 84px; display: flex; align-items: center;
+  justify-content: center; padding-top: 8px; transform: rotate(9deg); z-index: 4; box-shadow: 0 0 0 9px rgba(4,87,231,.18), 0 18px 40px rgba(4,87,231,.4); }
+.chip b { color: #F4B04A; font-weight: 400; }
+#mini { left: 62px; top: 940px; width: 196px; height: 226px; border-radius: 22px; background: #fff; transform: rotate(-8deg); z-index: 2; overflow: hidden;
+  border: 2px solid rgba(1,11,37,.07); box-shadow: 0 20px 44px rgba(1,11,37,.18); }
+#mini .hd { height: 44px; background: #0B2266; }
+#mini .gr { position: absolute; left: 0; right: 0; top: 44px; bottom: 0; display: grid; grid-template-columns: 34px 1fr 1fr; grid-template-rows: repeat(4, 1fr); }
+#mini .gr div { border-right: 2px solid #D9DEE9; border-bottom: 2px solid #D9DEE9; display: flex; align-items: center; padding: 0 9px; }
+#mini .gr div:nth-child(3n+1) { background: #EEF1F6; }
+#mini u { display: block; height: 13px; border-radius: 7px; background: #C3CADA; width: 78%; }
+#mini u.g { background: #F4B04A; height: 17px; width: 92%; }
+</style></head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="1" data-fps="30" data-width="1080" data-height="1920">
+  <div id="wm" class="abs mono"><svg class="compass" width="56" height="56" viewBox="-55 -55 110 110"><polygon points="0,0 21.21,-21.21 0.00,-8.50" fill="#5CA2EE"/><polygon points="0,0 21.21,-21.21 8.50,0.00" fill="#0457E7"/><polygon points="0,0 21.21,21.21 8.50,0.00" fill="#5CA2EE"/><polygon points="0,0 21.21,21.21 0.00,8.50" fill="#0457E7"/><polygon points="0,0 -21.21,21.21 0.00,8.50" fill="#5CA2EE"/><polygon points="0,0 -21.21,21.21 -8.50,0.00" fill="#0457E7"/><polygon points="0,0 -21.21,-21.21 -8.50,0.00" fill="#5CA2EE"/><polygon points="0,0 -21.21,-21.21 -0.00,-8.50" fill="#0457E7"/><circle r="21" fill="none" stroke="#1892F0" stroke-width="2.2"/><polygon points="0,0 0.00,-50.00 -6.01,-6.01" fill="#F6F6F8"/><polygon points="0,0 0.00,-50.00 6.01,-6.01" fill="#8E97AA"/><polygon points="0,0 50.00,0.00 6.01,-6.01" fill="#F6F6F8"/><polygon points="0,0 50.00,0.00 6.01,6.01" fill="#8E97AA"/><polygon points="0,0 0.00,50.00 6.01,6.01" fill="#F6F6F8"/><polygon points="0,0 0.00,50.00 -6.01,6.01" fill="#8E97AA"/><polygon points="0,0 -50.00,0.00 -6.01,6.01" fill="#F6F6F8"/><polygon points="0,0 -50.00,0.00 -6.01,-6.01" fill="#8E97AA"/><circle r="2.6" fill="#010B25"/></svg><span>A NOVA ORDEM EDUCACIONAL</span></div>
+  <div class="abs l bebas" style="top:262px;font-size:158px">SEU CHEFE JÁ FEZ</div>
+  <div class="abs l bebas" style="top:414px;font-size:248px">ESSA CONTA</div>
+  <div class="abs bebas" id="l3"><span>VOCÊ <i>X</i> FERRAMENTA</span></div>
+  <div class="abs" id="panel"></div>
+  <div class="abs" id="mini"><div class="hd"></div><div class="gr">
+    <div></div><div><u></u></div><div><u style="width:60%"></u></div>
+    <div></div><div><u style="width:64%"></u></div><div><u class="g"></u></div>
+    <div></div><div><u style="width:84%"></u></div><div><u style="width:48%"></u></div>
+    <div></div><div><u style="width:56%"></u></div><div><u style="width:72%"></u></div>
+  </div></div>
+  <div class="abs chip bebas">R<b>$</b></div>
+  <div class="abs" id="clip"><img id="host" src="assets/host_cut.png" alt=""></div>
+</div>
+<script src="assets/gsap.min.js"></script>
+<script>
+window.__timelines = window.__timelines || {};
+const tl = gsap.timeline({ paused: true });
+tl.to("#root", { opacity: 1, duration: 1 }, 0);
+window.__timelines["main"] = tl;
+</script>
+</body></html>

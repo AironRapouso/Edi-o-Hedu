@@ -1,0 +1,42 @@
+
+/* ---------------- 9:16 cut (Reels look): paper panel on top, face below, pill on the seam ---------------- */
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #F4F2EC; }
+#root { width: 1080px !important; height: 1920px !important; }
+.clip { width: 1080px; height: 1920px; }
+#panel { left: 0; top: 0; width: 1080px; border-radius: 0; box-shadow: none; z-index: 1; }
+#panel .brand { position: absolute; left: 0; right: 0; top: 34px; display: flex; align-items: center; justify-content: center; gap: 12px;
+  font-size: 19px; letter-spacing: .32em; color: rgba(1,11,37,.55); }
+#gl { left: 0; top: 0; width: 1080px; z-index: 4; }
+#face { position: absolute; left: 0; width: 1080px; overflow: hidden; z-index: 2; background: #111; border-radius: 44px 44px 0 0;
+  box-shadow: 0 -18px 50px rgba(1,11,37,.18); }
+#zoom { position: absolute; inset: 0; }
+#vid { position: absolute; display: block; object-fit: cover; }
+.fshade { position: absolute; left: 0; right: 0; bottom: 0; height: 260px; background: linear-gradient(to top, rgba(1,11,37,.35), rgba(1,11,37,0)); }
+
+.cap .pill { bottom: auto; left: 540px; font-size: 44px; padding: 16px 30px 14px 34px; }
+
+.vchip { position: absolute; left: 0; top: 0; width: 1080px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 8px; padding: 70px 70px 40px; text-align: center; }
+.vchip .vl { font-family: "Bebas Neue", sans-serif; font-size: 108px; line-height: .98; color: #010B25; letter-spacing: .01em; }
+.vchip .g { color: #010B25; background: linear-gradient(transparent 56%, #F9D48B 56%); padding: 0 6px; }
+.vchip .hl { font-weight: 400; color: #010B25; background: linear-gradient(transparent 56%, #F9D48B 56%); padding: 0 8px; }
+.vchip .r { color: #E5484D; }
+.vchip .box { background: #F4B04A; color: #010B25; padding: 6px 18px 0; border-radius: 12px; display: inline-block; }
+.vchip .sk { background-image: linear-gradient(#E5484D,#E5484D); background-repeat: no-repeat; background-position: 0 46%; background-size: 0% 12px; }
+.vchip.title .vl { font-size: 128px; }
+
+.exwrap { position: absolute; left: 25px; top: 64px; width: 1110px; height: 952px; transform: scale(.928); transform-origin: 0 0; }
+.exwrap .sheet { left: 0; top: 0; }
+.exwrap .piplabel, .exwrap .pipframe { display: none; }
+
+.vsrc { position: absolute; left: 70px; right: 70px; top: 1715px; text-align: center; font-size: 21px; line-height: 1.35; color: #F6F6F8;
+  background: rgba(1,11,37,.62); padding: 12px 18px; border-radius: 12px; }
+
+.endv { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #F6F6F8;
+  background: radial-gradient(ellipse 90% 60% at 30% 25%, #0b2c74 0%, #031954 40%, #010B25 80%); }
+.endv .e1 { font-size: 112px; }
+.endv #endt { margin-top: 90px; }
+.rule { width: 260px; height: 6px; border-radius: 3px; background: #F4B04A; margin-top: 28px; }
+
+.vhook { position: absolute; left: 0; top: 0; width: 1080px; background: #F4F2EC; overflow: hidden; }
+.vhook .vchip { position: relative; }

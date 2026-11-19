@@ -1,0 +1,35 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:"Inter";font-weight:700;src:url("Inter-700-latin.woff2") format("woff2");font-display:block}
+@font-face{font-family:"Bebas Neue";src:url("bebas-neue-latin-400-normal.woff2") format("woff2");font-display:block}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1280px;height:720px;overflow:hidden;background:#010B25}
+.stage{position:relative;width:1280px;height:720px;overflow:hidden;
+  background:radial-gradient(ellipse 600px 640px at 960px 340px,#0A47B8 0%,rgba(4,87,231,.35) 45%,transparent 75%),linear-gradient(135deg,#031954 0%,#010B25 62%)}
+.host{position:absolute;left:455px;top:-6px;width:960px;filter:drop-shadow(-14px 10px 24px rgba(0,4,20,.5))}
+.fade{position:absolute;left:0;right:0;bottom:0;height:130px;background:linear-gradient(180deg,transparent,rgba(1,11,37,.9))}
+.tag{position:absolute;left:58px;top:30px;display:flex;align-items:center;gap:12px;font:700 19px/1 Inter;letter-spacing:4px;color:#5CA2EE}
+.tag::before{content:"";width:44px;height:3px;background:#F4B04A}
+.title{position:absolute;left:54px;top:60px;font-family:"Bebas Neue";text-transform:uppercase;white-space:nowrap}
+.title span{display:block}
+.l1{font-size:128px;line-height:.95;color:#F6F6F8;letter-spacing:1px}
+.l2{font-size:128px;line-height:.95;color:#F6F6F8;letter-spacing:1px}
+.l3{font-size:128px;line-height:1;color:#F4B04A;letter-spacing:1px;margin-top:6px}
+.steps{position:absolute;left:56px;top:498px;display:flex;flex-direction:column;gap:10px}
+.st{display:flex;align-items:center;gap:12px;font:400 38px/1 "Bebas Neue";letter-spacing:1.5px;color:#F6F6F8}
+.st i{font-style:normal;width:46px;height:46px;border-radius:8px;background:#F4B04A;color:#031954;text-align:center;line-height:50px;font-size:34px}
+.st b{font-weight:400;color:#5CA2EE}
+.logo{position:absolute;right:26px;bottom:20px;display:flex;align-items:center;gap:8px;font:700 13px/1.15 Inter;letter-spacing:2px;color:#F6F6F8;opacity:.92}
+.logo img{width:44px;height:44px;mix-blend-mode:screen;-webkit-mask-image:radial-gradient(circle,#000 58%,transparent 72%)}
+</style></head><body><div class="stage">
+<img class="host" src="host_take.png">
+<div class="fade"></div>
+<div class="tag">NOVAS DIRETRIZES DA EDUCAÇÃO PROFISSIONAL</div>
+<div class="title"><span class="l1">SÓ MAIS</span><span class="l2">ESCOLAS TÉCNICAS</span><span class="l3">RESOLVE?</span></div>
+<div class="steps">
+  <div class="st"><i>1</i>ORGANIZAR <b>MELHOR</b></div>
+  <div class="st"><i>2</i>COOPERAR <b>SEM PERDER QUALIDADE</b></div>
+  <div class="st"><i>3</i>MEDIR <b>O QUE O ALUNO APRENDE</b></div>
+</div>
+<div class="logo"><img src="compass.png"><span>A NOVA ORDEM<br>EDUCACIONAL</span></div>
+</div></body></html>

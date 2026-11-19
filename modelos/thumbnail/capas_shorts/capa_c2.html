@@ -1,0 +1,40 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>EP7 c2 capa azul</title><style>
+@font-face{font-family:"Bebas Neue";src:url("fonts/bebas-neue-latin-400-normal.woff2") format("woff2");font-display:block}
+@font-face{font-family:"Inter";src:url("fonts/Inter-700-latin.woff2") format("woff2");font-weight:700;font-display:block}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#010B25}
+.stage{position:relative;width:1080px;height:1920px;overflow:hidden;
+ background:radial-gradient(ellipse 760px 700px at 540px 1380px,rgba(4,87,231,.62),transparent 72%),linear-gradient(180deg,#031954 0%,#010B25 62%)}
+.top{position:absolute;left:0;right:0;top:250px;display:flex;flex-direction:column;align-items:center;z-index:5}
+.tag{display:flex;align-items:center;gap:16px;font:700 30px/1 Inter;letter-spacing:.24em;color:#F6F6F8;margin-bottom:22px}
+.tag::before,.tag::after{content:"";width:56px;height:4px;background:#F4B04A;border-radius:2px}
+.t{font-family:"Bebas Neue";line-height:.94;white-space:nowrap;letter-spacing:.01em;text-shadow:0 6px 18px rgba(0,4,20,.45)}
+.l1{color:#F6F6F8}.l2{color:#F4B04A;margin-top:4px}
+.board{margin-top:34px;padding:18px 22px 22px;border-radius:18px;background:#000817;border:2px solid rgba(92,162,238,.35);box-shadow:0 22px 44px rgba(0,4,20,.55)}
+.bh{display:flex;justify-content:space-between;gap:40px;font:700 23px/1 Inter;letter-spacing:.2em;color:#5CA2EE;padding:2px 4px 10px;border-bottom:2px solid rgba(92,162,238,.3);margin-bottom:6px}
+.bh b{color:#F4B04A}
+.r{display:flex;align-items:center;gap:5px;margin-top:9px}
+.n{width:54px;font:700 24px/1 Inter;color:#5CA2EE;letter-spacing:.06em}
+.c{position:relative;display:block;width:66px;height:74px;border-radius:7px;font:normal 400 66px/80px "Bebas Neue";text-align:center;color:#F6F6F8;
+ background:linear-gradient(180deg,#1B2B5C 0 49%,#13214A 51% 100%)}
+.c::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:rgba(0,4,20,.7)}
+.c.q{color:#010B25;background:linear-gradient(180deg,#F9C673 0 49%,#F4B04A 51% 100%)}
+.c.q1{margin-left:16px}
+.host{position:absolute;z-index:3;filter:drop-shadow(0 12px 30px rgba(0,4,20,.6))}
+.fade{position:absolute;left:0;right:0;bottom:0;height:170px;z-index:4;background:linear-gradient(180deg,transparent,rgba(1,11,37,.6))}
+.logo{position:absolute;z-index:6;left:0;right:0;top:118px;display:flex;align-items:center;justify-content:center;gap:14px;font:700 26px/1 Inter;letter-spacing:.24em;color:#F6F6F8}
+.logo img{width:64px;height:64px;object-fit:contain;mix-blend-mode:screen;-webkit-mask-image:radial-gradient(circle,#000 55%,transparent 72%)}
+.sub{margin-top:30px;font:700 34px/1.25 Inter;letter-spacing:.06em;color:#5CA2EE;text-align:center}.sub b{color:#F6F6F8}
+</style></head><body>
+<div class="stage">
+  <img class="host" src="host_c2.png" style="left:-150px;top:900px;width:1380px" alt="">
+  <div class="fade"></div>
+  <div class="top">
+    <div class="tag">INTELIGÊNCIA ARTIFICIAL</div>
+    <div class="t l1" data-w="880" data-max="230">A IA RESOLVE</div><div class="t l1" data-w="880" data-max="230">A EDUCAÇÃO</div>
+    <div class="t l2" data-w="720" data-max="260">SOZINHA?</div>
+    <div class="sub">Ela ajuda. <b>Mas não substitui o professor.</b></div>
+  </div>
+  <div class="logo"><img src="compass.png" alt="">A NOVA ORDEM EDUCACIONAL</div>
+</div><script>document.fonts.ready.then(()=>{document.querySelectorAll('.t').forEach(e=>{let s=100;e.style.fontSize=s+'px';
+const w=e.getBoundingClientRect().width;s=Math.min(+e.dataset.max,100*+e.dataset.w/w);e.style.fontSize=s+'px';});});</script></body></html>
