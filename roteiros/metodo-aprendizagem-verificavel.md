@@ -2,16 +2,21 @@
 
 **Ideia central:** com a IA, o trabalho pronto deixou de provar que o aluno aprendeu. Aprendizagem verificável é a que deixa evidência em cada etapa, e a evidência final é sempre produzida sem IA.
 
-## 1. A metáfora (do reel de referência)
+## 1. O reel de referência e o que aproveitamos
 
-| No reel | No método |
-| :- | :- |
-| A bomba | A IA generativa: qualquer aluno entrega um trabalho perfeito em 30 segundos |
-| A onda de choque | Aluno que usa IA sozinho: entrega tudo, não retém nada e acha que aprendeu |
-| O bunker | A aula redesenhada pelo professor, em 5 camadas |
-| Quem está dentro | Aluno com professor mediando o uso da IA |
-| Quem ficou fora | Aluno sem mediação |
-| O teste de pressão | O aluno explica sem IA. Se o abrigo segura, houve aprendizagem |
+Reel de @alexconstroe: 60 s, todo em 3D, sem apresentador. Abre com a bomba e a corrida para o bunker, pausa no auge e explica por que vídeos de obra prendem a atenção.
+
+| Recurso do reel | Por que prende | No nosso vídeo | Na aula do professor |
+| :- | :- | :- | :- |
+| Cronômetro 00:09 na tela | Urgência | A bomba cai em 9 segundos | Prazo visível: "em 40 min você explica isto sem IA" |
+| Pausa em 00:07 | Deixa uma pergunta aberta até o fim | Pausa no auge; o abrigo só é testado no final | Pergunta-problema aberta no início, respondida na saída |
+| "MAS…" e "ENTÃO…" | Cada passo cria e resolve uma tensão | Cada camada tem um obstáculo e uma solução | Cada etapa tem um erro esperado e uma intervenção |
+| Obra em etapas | Progresso visível | 5 camadas numeradas | O aluno vê o que já provou |
+| Ciclo "assiste até o fim, mais gente vê" | Mostra o mecanismo girando | Ciclo evidência, intervenção, aprendizagem | O mesmo ciclo, a cada aula |
+| "Você não precisa aparecer" | Remove a objeção | "Você não precisa proibir a IA" | |
+| Lista "O Claude faz" com vistos | Recompensa final | Lista das provas que ficaram | Portfólio de evidências |
+
+**Metáfora:** a bomba é a IA generativa; o bunker é a aula redesenhada pelo professor; quem está dentro é o aluno com mediação; quem ficou fora usou a IA sozinho.
 
 ## 2. As 5 camadas: PROVA
 
@@ -65,29 +70,31 @@
 
 Limite do dado: ele prova o dano da IA sem mediação e que a tutoria evita esse dano. O ganho do método completo (aula invertida mais verificação) é a proposta a testar, não um resultado do estudo.
 
-## 6. Roteiro do Reel (cerca de 90 s)
+## 6. Roteiro do Reel (cerca de 75 s)
 
-Formato do canal: painel 3D em cima, rosto embaixo. Motor de retenção: ameaça no início, construção em camadas numeradas (cada camada é uma pequena recompensa), contraste dentro e fora, teste final.
+Segue as batidas do reel de referência: cronômetro, pausa, camadas com MAS e ENTÃO, retomada do cronômetro, lista com vistos. Legenda palavra por palavra. Etiqueta vermelha "MAS…" e verde "ENTÃO…" na tela.
 
-| Tempo | Painel | Fala |
+| Tempo | Cena 3D | Fala |
 | :- | :- | :- |
-| 0 a 4 | Clarão. Cogumelo feito de folhas de redação sobre uma escola | A bomba já caiu na sua sala de aula. E quase ninguém ouviu o barulho. |
-| 4 a 12 | Aluno digita, contador de 30 s, sai um trabalho nota 10 | Hoje qualquer aluno entrega um trabalho perfeito em trinta segundos. O trabalho pronto não prova mais que ele aprendeu. |
-| 12 a 22 | Dois números gigantes: +48% e −17% | Numa pesquisa com quase mil alunos, quem usou IA solta foi 48% melhor nos exercícios. Na prova, sem IA, foi 17% pior do que quem nunca usou. E saiu achando que tinha aprendido. |
-| 22 a 27 | Pá entra no chão, começa o buraco | Proibir não segura a explosão. Então a gente constrói o abrigo. São cinco camadas. |
-| 27 a 35 | Laje de concreto. Rótulo "1 Propósito" | Um: a fundação. Antes da aula, o professor escreve o que o aluno vai conseguir fazer sozinho e como isso vai aparecer. |
-| 35 a 43 | Paredes sobem. Rótulo "2 Em casa" | Dois: as paredes. O conteúdo vai para casa. O aluno estuda com a IA como tutora: ela pergunta, ele responde. E traz uma dúvida escrita. |
-| 43 a 50 | Porta blindada com 3 travas | Três: a porta. A aula começa com três perguntas, sem IA. Em cinco minutos o professor sabe quem chegou e quem ficou de fora. |
-| 50 a 60 | Interior: três mesas, professor circulando | Quatro: o lado de dentro. A aula vira prática. O professor separa a turma pelo que viu na porta e age na hora: retoma com um grupo, desafia o outro. |
-| 60 a 68 | Manômetro subindo, estrutura firme | Cinco: o teste de pressão. Para sair, o aluno explica com as próprias palavras, sem IA. Se não sabe explicar, ainda não aprendeu. |
-| 68 a 80 | Tela dividida. Fora: trabalho brilhante vira cinza. Dentro: aluno explica no quadro | Agora olha os dois alunos. Um usou a IA sozinho: entregou tudo e não ficou com nada. O outro teve um professor mediando: errou, foi corrigido e provou que sabe. |
-| 80 a 88 | Bunker inteiro, palavra PROVA nas cinco camadas | A IA não substitui o professor. Ela mostra quem está mediando. Isso é aprendizagem verificável. Salva e testa na próxima aula. |
+| 0 a 4 | Campo aberto, clarão no horizonte, cronômetro 00:09. Professor de capacete corre para a escotilha | A bomba cai em nove segundos. O professor corre para o abrigo. |
+| 4 a 7 | Cronômetro congela em 00:07, ícone de pausa | Pausa. Essa bomba é a IA, e ela já caiu na sua sala. |
+| 7 a 14 | Celular: trabalho nota 10 sai em 30 s. Números +48% e −17% | O aluno entrega um trabalho perfeito em trinta segundos. Em pesquisa com quase mil alunos, quem usou IA solta foi 48% melhor no exercício e 17% pior na prova sem ela. |
+| 14 a 18 | Pá no chão, o buraco abre | Então o professor constrói o abrigo. Cinco camadas. |
+| 18 a 27 | Laje de concreto. "1 Propósito" | Um, a fundação: o objetivo. Mas objetivo vago ninguém confere. Então ele escreve o que o aluno vai fazer sozinho. |
+| 27 a 36 | Paredes sobem. "2 Em casa" | Dois, as paredes: o conteúdo vai para casa. Mas em casa a IA responde tudo. Então ela vira tutora: pergunta, e o aluno responde. |
+| 36 a 44 | Porta blindada com 3 travas. "3 Entrada" | Três, a porta: três perguntas sem IA. Mas metade não passa. Então o professor já sabe quem ajudar. |
+| 44 a 52 | Interior, três mesas, professor circulando. "4 Prática" | Quatro, o lado de dentro: a aula vira prática. Mas cada grupo trava num ponto. Então ele intervém grupo a grupo, na hora. |
+| 52 a 60 | Manômetro sobe. "5 Prova" | Cinco, o teste de pressão: explicar sem IA. Mas o aluno gagueja. Então ainda não aprendeu, e volta uma camada. |
+| 60 a 66 | Cronômetro volta a correr até 00:00. Onda passa. Fora: trabalho vira cinza. Dentro: aluno explica no quadro | Solta o vídeo. A bomba cai. Quem usou a IA sozinho ficou com um trabalho em cinzas. Quem teve professor mediando explica o que aprendeu. |
+| 66 a 72 | Lista "O MÉTODO DEIXA" com cinco vistos: objetivo, estudo em casa, entrada, prática, explicação sem IA | Em cada camada ficou uma prova. Isso é aprendizagem verificável. |
+| 72 a 76 | Professor ergue a placa PROVA | Salva e testa na próxima aula. |
 
 **Versão longa:** o mesmo arco vira episódio, com um capítulo por camada e a seção 3 como demonstração de uma aula real.
 
 ## 7. Em aberto
 
-- O reel de referência não pôde ser aberto (acesso bloqueado). O arco acima segue a descrição dada; com a transcrição ou as batidas do vídeo, ajusto os tempos.
+- Vi o reel por quadros e pelas legendas na tela; o áudio não foi ouvido. A leitura das batidas vem do que aparece escrito.
+- Formato: tela cheia em 3D, como o reel, ou o padrão do canal (painel 3D em cima, rosto embaixo). O roteiro serve aos dois.
 - A sigla PROVA é proposta minha para nomear as 5 camadas.
 
 Fonte do dado: https://papers.ssrn.com/abstract=4895486
