@@ -1,0 +1,17 @@
+{
+  "titulo": "A bomba já caiu na sua sala",
+  "cenas": [
+    {"id": "gancho", "fala": "A bomba cai em nove segundos. O professor corre para o abrigo."},
+    {"id": "pausa", "fala": "Pausa. Essa bomba é a inteligência artificial, e ela já caiu na sua sala."},
+    {"id": "dado", "fala": "O aluno entrega um trabalho perfeito em trinta segundos. Em pesquisa com quase mil alunos, quem usou a inteligência artificial solta foi quarenta e oito por cento melhor no exercício, e dezessete por cento pior na prova sem ela."},
+    {"id": "obra", "fala": "Então o professor constrói o abrigo. Cinco camadas."},
+    {"id": "c1", "fala": "Um, a fundação: o objetivo. Mas objetivo vago ninguém confere. Então ele escreve o que o aluno vai fazer sozinho."},
+    {"id": "c2", "fala": "Dois, as paredes: o conteúdo vai para casa. Mas em casa a inteligência artificial responde tudo. Então ela vira tutora: pergunta, e o aluno responde."},
+    {"id": "c3", "fala": "Três, a porta: três perguntas sem inteligência artificial. Mas metade não passa. Então o professor já sabe quem ajudar."},
+    {"id": "c4", "fala": "Quatro, o lado de dentro: a aula vira prática. Mas cada grupo trava num ponto. Então ele intervém grupo a grupo, na hora."},
+    {"id": "c5", "fala": "Cinco, o teste de pressão: explicar sem inteligência artificial. Mas o aluno gagueja. Então ainda não aprendeu, e volta uma camada."},
+    {"id": "teste", "fala": "Solta o vídeo. A bomba cai. Quem usou a inteligência artificial sozinho ficou com um trabalho em cinzas. Quem teve professor mediando explica o que aprendeu."},
+    {"id": "lista", "fala": "Em cada camada ficou uma prova. Isso é aprendizagem verificável."},
+    {"id": "cta", "fala": "Salva e testa na próxima aula."}
+  ]
+}

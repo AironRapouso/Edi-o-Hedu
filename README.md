@@ -12,6 +12,7 @@ O repositório guarda só o que é necessário para editar: scripts, modelos de 
 | `modelos/longo/exemplos/` | Plano de corte e cenas do EP8, com âncoras por frase (`S("frase")`, `E("frase")`) em vez de índices de palavra. |
 | `modelos/longo_padrao_antigo/` | O padrão anterior do vídeo longo (apresentador em tela cheia, intertítulos, painéis de dados, imagens de apoio). Só se for pedido. |
 | `modelos/reels/` | Reels avulsos 9:16: painel 3D em cima, rosto embaixo, rosto estabilizado pela linha dos olhos, voz tratada, capa. Modelo: REELS 3. |
+| `modelos/animado/` | Vídeo animado 9:16 sem gravação: 3D em tela cheia, narração gerada (voz clonada do Dr. Hélio), legenda palavra por palavra. Veja `modelos/animado/LEIAME.md`. Painel de agentes: `.claude/workflows/video-animado.js`. |
 | `modelos/thumbnail/` | Thumbnail azul do vídeo longo, thumbnail da série Papo Reto, a do EP6 (painel de aeroporto) e as capas azuis dos shorts. |
 | `spotify/` | Linha de produção do episódio em áudio (`_pipeline/`) e o padrão do podcast (`PADRAO_PODCAST.md`). |
 | `assets/` | Fontes (Inter, Bebas Neue, Playfair Display), three.js 0.181, GSAP, a vinheta do canal (`vinheta.mp4`), a bússola da marca e os efeitos sonoros do padrão antigo. |

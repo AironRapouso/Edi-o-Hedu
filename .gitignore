@@ -17,3 +17,9 @@ __pycache__/
 *.wav
 !assets/sfx_padrao_antigo/*.wav
 !spotify/_pipeline/vinheta.wav
+
+# vídeo animado: saídas e cópias geradas
+modelos/animado/out/
+modelos/animado/hf/assets/
+modelos/animado/hf/index.html
+modelos/animado/voz_ref.*
