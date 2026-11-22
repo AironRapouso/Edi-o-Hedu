@@ -1,6 +1,6 @@
 """Gera as falas da narradora (edge-tts, voz Francisca pt-BR).  Uso: python tts_edge.py <pasta do episódio> [chave ...]
 Sem chaves, gera só o que falta ou cujo texto mudou."""
-import asyncio, json, pathlib, sys
+import asyncio, json, os, pathlib, sys
 import edge_tts
 from common import VOICE, RATE, block_lines
 
@@ -21,7 +21,7 @@ async def main():
             continue
         for attempt in range(4):
             try:
-                await edge_tts.Communicate(text, VOICE, rate=RATE).save(str(f))
+                await edge_tts.Communicate(text, VOICE, rate=RATE, proxy=os.environ.get('HTTPS_PROXY') or os.environ.get('https_proxy')).save(str(f))
                 break
             except Exception as e:   # serviço gratuito: às vezes derruba a conexão
                 if attempt == 3:
