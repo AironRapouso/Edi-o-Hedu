@@ -89,7 +89,7 @@ ROTEIRO: ${JSON.stringify(roteiro.cenas)}`, { ...OPC, label: `revisor-${volta}`,
 phase('Montagem')
 const final = await agent(`Você é o João, Editor. Renderize o vídeo ${NOME}.
 ${REGRAS}
-Rode em segundo plano: bash ${PASTA}/render.sh ${PASTA}  (leva de 10 a 30 minutos). Ao terminar, confira ${PASTA}/out/final.mp4 com ffprobe (duração igual à de out/words.json, com faixa de áudio) e extraia 3 quadros com ffmpeg para ver se a imagem está íntegra.`, { ...OPC, label: 'joao-render', phase: 'Montagem', schema: FINAL })
+Rode em segundo plano: bash ${PASTA}/render.sh ${PASTA}  (leva cerca de 25 s por segundo de vídeo; se for interrompido, rode de novo o mesmo comando: ele continua do trecho em que parou). Ao terminar, confira ${PASTA}/out/final.mp4 com ffprobe (duração igual à de out/words.json, com faixa de áudio) e extraia 3 quadros com ffmpeg para ver se a imagem está íntegra.`, { ...OPC, label: 'joao-render', phase: 'Montagem', schema: FINAL })
 if (!final || final.erro || !final.tem_audio) return { erro: 'render falhou', detalhe: final }
 
 phase('Publicação')

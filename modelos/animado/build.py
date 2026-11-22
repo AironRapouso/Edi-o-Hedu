@@ -3,7 +3,7 @@
 Uso: python build.py <pasta do vídeo>   ->   hf/index.html
 Lê roteiro.json e out/words.json (gerado pelo voz.py). As cenas ficam em hf/cenas.js; o kit comum, em hf/kit.js.
 """
-import json, math, re, shutil, sys
+import json, math, os, re, shutil, sys
 from pathlib import Path
 
 raiz = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
@@ -37,7 +37,8 @@ for k, ws in enumerate(trechos):
     spans = "".join(f'<span id="cap{k}w{i}" class="w">{re.sub(r"[.,:;]+$", "", w["w"])}</span>' for i, w in enumerate(ws))
     html.append(f'<div id="cap{k}" class="cap"><span class="pill">{spans}</span></div>')
 
-ANIM = {"W": W, "H": H, "fps": FPS, "total": TOTAL, "cenas": V["cenas"], "caps": caps}
+# o 3D é desenhado por software (sem placa de vídeo): a 75% e ampliado fica ~40% mais rápido; textos e legendas seguem em 1080. ESCALA=1 desliga
+ANIM = {"W": W, "H": H, "fps": FPS, "total": TOTAL, "cenas": V["cenas"], "caps": caps, "q": {"escala": float(os.environ.get("ESCALA", "0.75"))}}
 FONTES = [("Inter", 400, "Inter-400-latin.woff2"), ("Inter", 700, "Inter-700-latin.woff2"), ("Bebas Neue", 400, "bebas-neue-latin-400-normal.woff2")]
 CSS = "".join(f'@font-face{{font-family:"{n}";font-weight:{p};src:url("assets/fonts/{a}") format("woff2")}}' for n, p, a in FONTES) + f"""
 html,body{{margin:0;background:#000}}

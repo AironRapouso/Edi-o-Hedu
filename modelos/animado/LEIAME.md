@@ -10,7 +10,8 @@ Vídeo 9:16 todo em 3D, narrado, feito do roteiro ao arquivo final sem câmera. 
 | `hf/kit.js` | Comum a todos os vídeos: luz, materiais, astronauta, peões, legendas, relógio. Não muda. |
 | `hf/cenas.js` | As cenas deste vídeo. É o arquivo que muda a cada vídeo. |
 | `prever.js` | Folha de contato com quadros de cada cena, para revisar antes do render. |
-| `render.sh` | Render no HyperFrames e junção do áudio: `out/final.mp4`. |
+| `render.js` | Render quadro a quadro em trechos de 5 s (`out/trechos/`). Interrompido, continua de onde parou. |
+| `render.sh` | Chama o `render.js` e junta o áudio: `out/final.mp4`. Na nuvem (sem placa de vídeo) leva cerca de 25 s por segundo de vídeo. `MOTOR=hf` usa o HyperFrames; `ESCALA=1 python build.py .` desenha o 3D em resolução cheia. |
 
 ## Passo a passo
 

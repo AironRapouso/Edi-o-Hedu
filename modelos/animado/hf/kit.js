@@ -13,13 +13,15 @@ export async function criarKit() {
   await Promise.all(['400 120px "Bebas Neue"', '700 60px "Inter"'].map((f) => document.fonts.load(f)));
   const { makeAstronaut } = await import("./assets/astronauta.js");
 
-  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gl"), antialias: true, preserveDrawingBuffer: true });
+  // qualidade do 3D (o render é por software, sem placa de vídeo): escala do quadro 3D, suavização e sombra
+  const Q = Object.assign({ escala: 1, aa: true, sombra: 2048, suave: true, verniz: true }, A.q, window.QUAL);
+  const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById("gl"), antialias: Q.aa, preserveDrawingBuffer: true });
   renderer.setPixelRatio(1);
-  renderer.setSize(W, H, false);
+  renderer.setSize(Math.round(W * Q.escala), Math.round(H * Q.escala), false);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.NeutralToneMapping;
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = Q.suave ? THREE.PCFSoftShadowMap : THREE.PCFShadowMap;
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x8fd0ff);
@@ -29,7 +31,7 @@ export async function criarKit() {
   sol.position.set(7, 15, 12);
   sol.target.position.set(0, -2, 0);
   sol.castShadow = true;
-  sol.shadow.mapSize.set(2048, 2048);
+  sol.shadow.mapSize.set(Q.sombra, Q.sombra);
   Object.assign(sol.shadow.camera, { left: -14, right: 14, top: 14, bottom: -14, near: 1, far: 60 });
   sol.shadow.bias = -0.0005;
   sol.shadow.normalBias = 0.03;
@@ -39,7 +41,9 @@ export async function criarKit() {
   const olho = { x: 0, y: 1.5, z: 16, lx: 0, ly: 0, lz: 0, dx: 0, dy: 0 };   // posição, alvo e tremor da câmera
 
   // ---- materiais e construtores (os mesmos nomes do scene3d.js dos Reels; o astronauta depende deles)
-  const mat = (hex, o = {}) => new THREE.MeshPhysicalMaterial({ color: hex, roughness: o.r ?? 0.42, metalness: o.m ?? 0, clearcoat: o.cc ?? 0.5, clearcoatRoughness: 0.3 });
+  const mat = (hex, o = {}) => Q.verniz
+    ? new THREE.MeshPhysicalMaterial({ color: hex, roughness: o.r ?? 0.42, metalness: o.m ?? 0, clearcoat: o.cc ?? 0.5, clearcoatRoughness: 0.3 })
+    : new THREE.MeshStandardMaterial({ color: hex, roughness: (o.r ?? 0.42) * 0.8, metalness: o.m ?? 0 });
   const basic = (hex, o = 1) => new THREE.MeshBasicMaterial({ color: hex, transparent: o < 1, opacity: o, toneMapped: false });
   const fosco = (hex) => new THREE.MeshStandardMaterial({ color: hex, roughness: 0.95, flatShading: true });   // visual de maquete
   const M = {
