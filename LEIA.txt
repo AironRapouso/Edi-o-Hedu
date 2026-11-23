@@ -1,0 +1,1 @@
+Arquivos temporários para o agendador buscar os vídeos longos. Apagar depois da publicação.
